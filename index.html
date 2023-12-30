@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur de Suite d'Annuités</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-image: url('style.jpg'); /* Add the path to your image here */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .calculator {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+    <script>
+        function calculate() {
+            var clientName = document.getElementById("clientName").value;
+            var a = parseFloat(document.getElementById("a").value);
+            var n = parseFloat(document.getElementById("n").value);
+            var i = parseFloat(document.getElementById("i").value) / 100;
+
+            var valeurActuelle = a * (1 - Math.pow(1 + i, -n)) / i;
+            var valeurAcquise = a * (Math.pow(1 + i, n) - 1) / i;
+
+            // Include the client's name in the output
+            var greeting = clientName ? "Monsieur " + clientName : "Monsieur";
+            
+            document.getElementById("result").innerHTML = greeting + ", la valeur actuelle est : D" + valeurActuelle.toFixed(2) + "<br>Valeur acquise: D" + valeurAcquise.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h2>Calculateur de Suite d'Annuités</h2>
+    </header>
+    <div class="calculator">
+        <p>Nom du client: <input type="text" id="clientName"></p>
+        <p>Annuités de remboursement ou d’amortissement (a): <input type="text" id="a"></p>
+        <p>Nombre de versements (n): <input type="text" id="n"></p>
+        <p>Taux d’intérêt de la période (i) (en pourcent): <input type="text" id="i"></p>
+        <button onclick="calculate()">Calculer</button>
+        <p id="result"></p>
+    </div>
+</body>
+</html>
